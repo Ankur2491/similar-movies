@@ -1,0 +1,31 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-7 col-sm-6 col-xs-6">
+            <mat-form-field>
+                <mat-label>Enter a movie name</mat-label>
+                <input matInput [(ngModel)]="movieName">
+            </mat-form-field>
+        </div>
+        <div class="col-3 col-sm-6 col-xs-6">
+            <button class="search-button" mat-raised-button color="primary" (click)="searchMovie()">Search</button>
+        </div>
+    </div>
+<div *ngIf="movieList.length>0" class="row">
+    <div class="col-md-4" *ngFor="let movie of movieList">
+    <figure class="image-block">
+        <img src="https://image.tmdb.org/t/p/w500/{{movie['poster']}}" alt="" />
+        <figcaption>
+            <h3>
+                {{movie['title']}}
+            </h3>
+            <p><strong>Release Date:</strong>{{movie['releaseDate']}}</p>
+            <p><strong>Rating:</strong>{{movie['rating']}}</p>
+            <p>{{movie['overview']}}</p>
+            <button (click)="viewSimilar(movie['id'], movie['title'], movie['genres'])">
+                View Similar Movies
+            </button>
+        </figcaption>
+    </figure>
+</div>
+</div>
+</div>
